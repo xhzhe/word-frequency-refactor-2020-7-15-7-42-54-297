@@ -24,24 +24,13 @@ public class WordFrequencyGame {
         }
     }
 
-    private List<WordInfo> calculateWordFrequency(String inputStr) {
-        String[] words = inputStr.split(SPACE_PATTERN);
-
-        List<WordInfo> wordInfoList = new ArrayList<>();
-        for (String word : words) {
-            WordInfo wordInfo = new WordInfo(word, 1);
-            wordInfoList.add(wordInfo);
+    private List<WordInfo> calculateWordFrequency(String sentence) {
+        String[] words = sentence.split(SPACE_PATTERN);
+        List<WordInfo> wordCount = new ArrayList<>();
+        for (String word : new HashSet<>(Arrays.asList(words))) {
+            wordCount.add(new WordInfo(word, (int) Arrays.stream(words).filter(wordInSentence -> wordInSentence.equals(word)).count()));
         }
-
-        Map<String, List<WordInfo>> map = getListMap(wordInfoList);
-
-        List<WordInfo> list = new ArrayList<>();
-        for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()) {
-            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
-            list.add(wordInfo);
-        }
-        wordInfoList = list;
-        return wordInfoList;
+        return wordCount;
     }
 
     private String generateWordFrequencyGameResult(List<WordInfo> wordInfoList) {
