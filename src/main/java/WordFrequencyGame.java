@@ -12,25 +12,8 @@ public class WordFrequencyGame {
         if (inputStr.split(SPACE_PATTERN).length==1) {
             return inputStr + " 1";
         } else {
-
             try {
-
-                String[] words = inputStr.split(SPACE_PATTERN);
-
-                List<WordInfo> wordInfoList = new ArrayList<>();
-                for (String word : words) {
-                    WordInfo wordInfo = new WordInfo(word, 1);
-                    wordInfoList.add(wordInfo);
-                }
-
-                Map<String, List<WordInfo>> map = getListMap(wordInfoList);
-
-                List<WordInfo> list = new ArrayList<>();
-                for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()) {
-                    WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
-                    list.add(wordInfo);
-                }
-                wordInfoList = list;
+                List<WordInfo> wordInfoList = calculateWordFrequency(inputStr);
 
                 wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
 
@@ -39,6 +22,26 @@ public class WordFrequencyGame {
                 return CALCULATE_ERROR;
             }
         }
+    }
+
+    private List<WordInfo> calculateWordFrequency(String inputStr) {
+        String[] words = inputStr.split(SPACE_PATTERN);
+
+        List<WordInfo> wordInfoList = new ArrayList<>();
+        for (String word : words) {
+            WordInfo wordInfo = new WordInfo(word, 1);
+            wordInfoList.add(wordInfo);
+        }
+
+        Map<String, List<WordInfo>> map = getListMap(wordInfoList);
+
+        List<WordInfo> list = new ArrayList<>();
+        for (Map.Entry<String, List<WordInfo>> entry : map.entrySet()) {
+            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
+            list.add(wordInfo);
+        }
+        wordInfoList = list;
+        return wordInfoList;
     }
 
     private String generateWordFrequencyGameResult(List<WordInfo> wordInfoList) {
