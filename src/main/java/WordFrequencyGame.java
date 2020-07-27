@@ -2,9 +2,9 @@ import java.util.*;
 
 public class WordFrequencyGame {
 
-    public static final String SPACE_PATTERN = "\\s+";
-    public static final String CALCULATE_ERROR = "Calculate Error";
-    public static final String SPACE = " ";
+    private static final String SPACE_PATTERN = "\\s+";
+    private static final String CALCULATE_ERROR = "Calculate Error";
+    private static final String SPACE = " ";
 
     public String getResult(String sentence) {
         try {
