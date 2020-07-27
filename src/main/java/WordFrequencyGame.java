@@ -26,12 +26,12 @@ public class WordFrequencyGame {
     }
 
     private String generateWordFrequencyGameResult(List<WordInfo> wordInfoList) {
-        StringJoiner joiner = new StringJoiner("\n");
+        StringJoiner result = new StringJoiner("\n");
         for (WordInfo wordInfo : wordInfoList) {
             String resultLine = wordInfo.getValue() + SPACE +wordInfo.getWordCount();
-            joiner.add(resultLine);
+            result.add(resultLine);
         }
-        return joiner.toString();
+        return result.toString();
     }
 
 }
