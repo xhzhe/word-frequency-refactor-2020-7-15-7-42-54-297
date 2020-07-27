@@ -34,17 +34,22 @@ public class WordFrequencyGame {
 
                 wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
 
-                StringJoiner joiner = new StringJoiner("\n");
-                for (WordInfo wordInfo : wordInfoList) {
-                    String resultLine = wordInfo.getValue() + SPACE +wordInfo.getWordCount();
-                    joiner.add(resultLine);
-                }
-                return joiner.toString();
+                return generateWordFrequencyGameResult(wordInfoList);
             } catch (Exception e) {
                 return CALCULATE_ERROR;
             }
         }
     }
+
+    private String generateWordFrequencyGameResult(List<WordInfo> wordInfoList) {
+        StringJoiner joiner = new StringJoiner("\n");
+        for (WordInfo wordInfo : wordInfoList) {
+            String resultLine = wordInfo.getValue() + SPACE +wordInfo.getWordCount();
+            joiner.add(resultLine);
+        }
+        return joiner.toString();
+    }
+
 
     private Map<String, List<WordInfo>> getListMap(List<WordInfo> wordInfoList) {
         Map<String, List<WordInfo>> map = new HashMap<>();
