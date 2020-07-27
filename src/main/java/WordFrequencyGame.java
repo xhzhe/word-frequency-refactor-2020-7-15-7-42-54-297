@@ -6,9 +6,9 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
     public static final String SPACE = " ";
 
-    public String getResult(String inputStr) {
+    public String getResult(String sentence) {
         try {
-            List<WordInfo> wordInfoList = calculateWordFrequency(inputStr);
+            List<WordInfo> wordInfoList = calculateWordFrequency(sentence);
             wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
             return generateWordFrequencyGameResult(wordInfoList);
         } catch (Exception e) {
