@@ -7,20 +7,12 @@ public class WordFrequencyGame {
     public static final String SPACE = " ";
 
     public String getResult(String inputStr) {
-
-
-        if (inputStr.split(SPACE_PATTERN).length==1) {
-            return inputStr + " 1";
-        } else {
-            try {
-                List<WordInfo> wordInfoList = calculateWordFrequency(inputStr);
-
-                wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
-
-                return generateWordFrequencyGameResult(wordInfoList);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+        try {
+            List<WordInfo> wordInfoList = calculateWordFrequency(inputStr);
+            wordInfoList.sort((firstWordInfo, secondWordInfo) -> secondWordInfo.getWordCount() - firstWordInfo.getWordCount());
+            return generateWordFrequencyGameResult(wordInfoList);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
 
